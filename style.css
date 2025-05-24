@@ -1,4 +1,4 @@
-﻿body {
+body {
     margin: 0;
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
@@ -45,22 +45,33 @@
 
 #number-display {
     font-size: 3em; /* Larger font for the number */
-    letter-spacing: 10px; /* Spacing between digits */
+    /* letter-spacing is now handled by span margins if needed */
     font-weight: 600;
     color: #2c3e50;
     padding: 10px;
     min-height: 50px; /* Ensure space even when empty */
+    line-height: 1em; /* Ensure consistent line height for spans */
 }
 
+/* Styling for individual digit spans */
 #number-display span {
     display: inline-block;
-    animation: fadeInDigit 0.5s ease-in-out;
+    margin: 0 3px; /* Adjust spacing between digits */
+    min-width: 1ch;   /* Approximate width of one character, helps reduce jitter */
+    text-align: center;
+    /* transition: all 0.1s; (Optional: if you want to add CSS transitions for settle) */
 }
 
-@keyframes fadeInDigit {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Optional: If you want to style spinning/settled digits differently */
+/*
+.digit-animating {
+    color: #7f8c8d;
 }
+.digit-settled {
+    color: #2c3e50;
+    font-weight: bold;
+}
+*/
 
 #qr-code-container {
     margin: 20px 0;
@@ -108,16 +119,17 @@
     }
     #number-display {
         font-size: 2.5em;
-        letter-spacing: 8px;
+    }
+    #number-display span {
+        margin: 0 2px;
     }
     #start-button {
         padding: 12px 25px;
         font-size: 1em;
     }
     .ad-slot {
-      /* Allow ad slots to shrink if necessary, but maintain aspect ratio idea */
       height: auto;
-      min-height: 50px; /* For common mobile banner sizes */
-      aspect-ratio: 468 / 60; /* Maintain aspect ratio if width changes */
+      min-height: 50px;
+      aspect-ratio: 468 / 60;
     }
 }
