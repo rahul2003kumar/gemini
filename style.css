@@ -1,11 +1,11 @@
 body {
     margin: 0;
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Updated Font */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Softer Gradient */
     color: #333;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to top for longer content */
+    align-items: flex-start;
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
@@ -13,123 +13,119 @@ body {
 
 .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 20px 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px; /* Max width for better desktop view */
+    max-width: 500px;
 }
 
 .ad-slot {
-    width: 100%; /* Responsive width */
-    max-width: 468px; /* Max ad width */
+    width: 100%;
+    max-width: 468px;
     height: 60px;
-    background-color: #f0f0f0;
-    border: 1px dashed #ccc;
+    background-color: #e9ecef; /* Lighter ad placeholder */
+    border: 1px dashed #ced4da;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 15px auto; /* Centering ad slots */
+    margin: 18px auto;
     font-size: 12px;
-    color: #777;
+    color: #6c757d;
 }
 
-#number-display-container {
-    min-height: 60px; /* To prevent layout jump when number appears */
+#number-display-area {
+    margin: 25px 0;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    align-items: center;
 }
 
 #number-display {
-    font-size: 3em; /* Larger font for the number */
-    /* letter-spacing is now handled by span margins if needed */
+    display: flex; /* To layout digit containers horizontally */
+    font-size: 3.5em; /* Large font for digits */
     font-weight: 600;
-    color: #2c3e50;
-    padding: 10px;
-    min-height: 50px; /* Ensure space even when empty */
-    line-height: 1em; /* Ensure consistent line height for spans */
+    color: #1d3557; /* Dark blue for digits */
+    height: 1.5em; /* Fixed height for alignment, adjust based on font-size */
+    line-height: 1.5em; /* Match height */
 }
 
-/* Styling for individual digit spans */
-#number-display span {
-    display: inline-block;
-    margin: 0 3px; /* Adjust spacing between digits */
-    min-width: 1ch;   /* Approximate width of one character, helps reduce jitter */
+.digit-container {
+    height: 1.5em; /* Should match line-height/height of #number-display */
+    width: 1ch;   /* Approximate width of one character */
+    overflow: hidden;
+    position: relative;
+    margin: 0 5px; /* Spacing between digits */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) inset; /* Subtle inner shadow */
+    border-radius: 4px;
+    background-color: #f8f9fa; /* Light background for digit reel */
+}
+
+.digit-reel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Transition will be applied by JS for settling */
+}
+
+.digit-reel span {
+    height: 1.5em; /* Match container height */
+    line-height: 1.5em; /* Vertically center text */
     text-align: center;
-    /* transition: all 0.1s; (Optional: if you want to add CSS transitions for settle) */
+    width: 100%;
 }
-
-/* Optional: If you want to style spinning/settled digits differently */
-/*
-.digit-animating {
-    color: #7f8c8d;
-}
-.digit-settled {
-    color: #2c3e50;
-    font-weight: bold;
-}
-*/
 
 #qr-code-container {
-    margin: 20px 0;
-    min-height: 150px; /* Placeholder height before QR renders */
+    margin: 25px 0;
+    min-height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #qr-code {
-    border: 1px solid #eee;
+    border: 1px solid #dee2e6;
     border-radius: 8px;
-    display: none; /* Initially hidden */
+    display: none;
 }
 
 #start-button {
-    background-color: #3498db;
+    background-color: #007bff; /* Bootstrap primary blue */
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
+    padding: 15px 35px;
+    font-size: 1.25em;
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 20px 0;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    margin: 25px 0;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 
 #start-button:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
     transform: translateY(-2px);
 }
 
 #start-button:active {
     transform: translateY(0px);
+    background-color: #004085;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-    .container {
-        padding: 15px;
-    }
-    #number-display {
-        font-size: 2.5em;
-    }
-    #number-display span {
-        margin: 0 2px;
-    }
-    #start-button {
-        padding: 12px 25px;
-        font-size: 1em;
-    }
-    .ad-slot {
-      height: auto;
-      min-height: 50px;
-      aspect-ratio: 468 / 60;
-    }
+    body { padding: 10px; }
+    .container { padding: 15px; }
+    #number-display { font-size: 2.8em; height: 1.5em; line-height: 1.5em;}
+    .digit-container { margin: 0 3px; height: 1.5em; }
+    .digit-reel span { height: 1.5em; line-height: 1.5em;}
+
+    #start-button { padding: 12px 28px; font-size: 1.1em; }
+    .ad-slot { height: auto; min-height: 50px; aspect-ratio: 468 / 60; margin: 15px auto;}
 }
